@@ -1,0 +1,53 @@
+<html>
+<head>
+<script>
+const accessToken = "c4f84b358e2a812da35b45eef05d801d12b634c6";
+const deviceID = "e00fce68ce6885f40a76bd65";
+const url = `https://api.particle.io/v1/devices/${deviceID}/led`;
+
+async function switchLight(state) {
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: new URLSearchParams({
+                params: state,
+                access_token: accessToken,
+            }),
+        });
+        const data = await response.json();
+
+        if (response.ok && data.return_value === 1) {
+            alert(`Foco ${state === "on" ? "encendido" : "encendido"} correctamente`);
+			console.log(data)
+        } else {
+            alert(`Foco ${state === "off" ? "apagado" : "apagado"} correctamente`);
+			console.log(data)
+
+        }
+    } catch (error) {
+        console.error("Error al cambiar el estado del foco:", error);
+    }
+}
+
+function switchOn() {
+    switchLight("on");
+}
+
+function switchOff() {
+    switchLight("off");
+}
+</script>
+</head>
+
+<body>
+<h1>On/Off Control</h1>
+
+<input type="button" onClick="switchOn()" value="ON"/>
+<input type="button" onClick="switchOff()" value="OFF"/>
+
+</body>
+</html>
+
