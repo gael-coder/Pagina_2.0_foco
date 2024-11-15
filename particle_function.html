@@ -3,7 +3,7 @@
 <script>
 const accessToken = "c4f84b358e2a812da35b45eef05d801d12b634c6";
 const deviceID = "e00fce68ce6885f40a76bd65";
-const url = `https://api.particle.io/v1/devices/${deviceID}/led`;
+const url = https://api.particle.io/v1/devices/${deviceID}/led;
 
 async function switchLight(state) {
     try {
@@ -20,29 +20,17 @@ async function switchLight(state) {
         const data = await response.json();
 
         if (response.ok && data.return_value === 1) {
-            alert(`Foco ${state === "on" ? "encendido" : "apagado"} correctamente`);
-            console.log(data);
+            alert(Foco ${state === "on" ? "encendido" : "encendido"} correctamente);
+			console.log(data)
         } else {
-            alert(`Foco ${state === "on" ? "encendido" : "apagado"} correctamente`);
-            console.log(data);
+            alert(Foco ${state === "off" ? "apagado" : "apagado"} correctamente);
+			console.log(data)
+
         }
     } catch (error) {
         console.error("Error al cambiar el estado del foco:", error);
     }
 }
-
-function checkTime() {
-    const now = new Date();
-    const hour = now.getHours();
-    const minute = now.getMinutes();
-
-    if (hour === 22 && minute === 0) {
-        switchLight("on");
-    }
-}
-
-// Revisa la hora cada minuto
-setInterval(checkTime, 60000);
 
 function switchOn() {
     switchLight("on");
@@ -62,5 +50,4 @@ function switchOff() {
 
 </body>
 </html>
-
 
